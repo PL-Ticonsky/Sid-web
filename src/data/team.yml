@@ -1,0 +1,7 @@
+members:
+  - name: "Nombre 1"
+    role: "Rol principal"
+    photo: "/images/team/1.jpg"
+  - name: "Nombre 2"
+    role: "Rol principal"
+    photo: "/images/team/2.jpg"

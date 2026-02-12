@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const items = await getCollection("activities");
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<BaseLayout title={`SID · ${item.data.title}`}>
+  <section class="space-y-10">
+    <!-- Header -->
+    <header class="space-y-5">
+      {item.data.cover && (
+        <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
+          <img
+            src={item.data.cover}
+            alt={item.data.title}
+            class="w-full max-h-[420px] object-cover"
+            loading="eager"
+          />
+        </div>
+      )}
+
+      <div class="space-y-3">
+        {item.data.type && (
+          <span class="inline-flex items-center rounded-full bg-sid-purple/10 px-3 py-1 text-xs font-semibold text-sid-purple">
+            {item.data.type}
+          </span>
+        )}
+
+        <h1 class="font-poppins text-4xl leading-tight text-sid-navy">
+          {item.data.title}
+        </h1>
+
+        {item.data.formUrl && (
+          <div class="pt-2">
+            <a
+              href={item.data.formUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center rounded-xl bg-sid-pink px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition"
+            >
+              Participar
+            </a>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <!-- Content -->
+    <article class="space-y-4 leading-relaxed text-slate-700">
+      <Content />
+    </article>
+  </section>
+</BaseLayout>

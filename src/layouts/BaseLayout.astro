@@ -1,0 +1,32 @@
+---
+import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
+
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><slot name="title" /></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="font-montserrat text-sid-navy bg-white">
+    <Navbar />
+
+    <main class="max-w-6xl mx-auto px-6 py-12">
+      <slot />
+    </main>
+
+    <footer class="border-t mt-20 py-8 text-center text-sm text-gray-500">
+      © {new Date().getFullYear()} Sociedad de Innovación y Desarrollo
+    </footer>
+  </body>
+</html>o 

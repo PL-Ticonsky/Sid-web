@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import teamData from "../data/team.json";
+
+type TeamMember = {
+  name: string;
+  role: string;
+  photo?: string;
+};
+
+const team = teamData as { members: TeamMember[] };
+---
+
+<BaseLayout title="SID · Equipo">
+  <h1>Equipo</h1>
+
+  <ul>
+    {team.members.map((m: TeamMember) => (
+      <li>{m.name} — {m.role}</li>
+    ))}
+  </ul>
+</BaseLayout>

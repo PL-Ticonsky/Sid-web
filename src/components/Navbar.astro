@@ -1,0 +1,25 @@
+---
+import site from "../data/site.json";
+---
+
+<nav class="sticky top-0 z-50 bg-sid-navy text-white border-b border-white/10">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="font-poppins font-bold text-lg tracking-wide">SID</a>
+
+    <div class="hidden md:flex items-center gap-8 font-montserrat text-sm">
+      <a class="hover:text-sid-cyan transition" href="/">Inicio</a>
+      <a class="hover:text-sid-cyan transition" href="/activities">Actividades</a>
+      <a class="hover:text-sid-cyan transition" href="/courses">Cursos</a>
+      <a class="hover:text-sid-cyan transition" href="/team">Equipo</a>
+    </div>
+
+    <a
+      href={site.joinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-sid-pink hover:opacity-90 transition px-4 py-2 rounded-md text-sm font-semibold"
+    >
+      Únete
+    </a>
+  </div>
+</nav>

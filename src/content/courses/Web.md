@@ -1,6 +1,6 @@
 ---
 title: "Fundamentos de Desarrollo Web"
-cover: "/images/courses/demo.webp"
+cover: "/images/courses/Web.webp"
 description: "Curso introductorio orientado a comprender la estructura de la web y construir páginas estáticas con buenas prácticas de organización, accesibilidad y estilo."
 level: "Introductorio"
 duration: "4 semanas"

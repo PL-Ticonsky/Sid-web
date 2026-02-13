@@ -1,6 +1,45 @@
-{
-  "members": [
-    { "name": "Nombre 1", "role": "Rol principal", "photo": "/images/team/1.jpg" },
-    { "name": "Nombre 2", "role": "Rol principal", "photo": "/images/team/2.jpg" }
-  ]
-}
+[
+  {
+    "name": "Santiago Lugo",
+    "role": "Presidente",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/santiago",
+    "instagram": "https://instagram.com/santiago"
+  },
+  {
+    "name": "Josue Urrego",
+    "role": "Web Master",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/josue",
+    "instagram": "https://instagram.com/josue"
+  },
+  {
+    "name": "Jorge Carvajal",
+    "role": "Vicepresidente",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/jorge",
+    "instagram": "https://instagram.com/jorge"
+  },
+  {
+    "name": "Segio",
+    "role": "Vocero",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/segio",
+    "instagram": "https://instagram.com/segio"
+  },
+  {
+    "name": "Milu",
+    "role": "Relaciones Públicas",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/milu",
+    "instagram": "https://instagram.com/milu"
+  },
+    {
+    "name": "Salda",
+    "role": "Cooperacion",
+    "image": "/images/team/demo.webp",
+    "linkedin": "https://linkedin.com/in/milu",
+    "instagram": "https://instagram.com/milu"
+  }
+
+]

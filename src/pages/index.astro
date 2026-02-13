@@ -2,11 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import site from "../data/site.json";
 
+const BASE = import.meta.env.BASE_URL;
+
 const gallery = [
-  "/images/activities/demo.webp",
-  "/images/activities/demo.webp",
-  "/images/activities/demo.webp",
-  "/images/activities/demo.webp",
+  `${BASE}images/activities/demo.webp`,
+  `${BASE}images/activities/demo.webp`,
+  `${BASE}images/activities/demo.webp`,
+  `${BASE}images/activities/demo.webp`,
 ];
 
 // Ahora es "Contáctanos"
@@ -16,8 +18,6 @@ const resources = [
   { label: "Repositorio (GitHub)", url: "https://github.com/" },
   { label: "Redes sociales", url: "https://instagram.com/" },
 ];
-
-const roadmap = [];
 ---
 
 <BaseLayout title="SID · Inicio">
@@ -36,10 +36,7 @@ const roadmap = [];
         </p>
 
         <div class="mt-6 flex gap-3">
-          <a
-            href={site.joinUrl}
-            class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold"
-          >
+          <a href={site.joinUrl} class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold">
             Únete
           </a>
         </div>
@@ -48,7 +45,7 @@ const roadmap = [];
       <!-- Pacha -->
       <div class="flex justify-center md:justify-end">
         <img
-          src="/images/brand/pachas.webp"
+          src={`${BASE}images/brand/pachas.webp`}
           alt="Pacha, mascota oficial de SID"
           class="w-64 md:w-80 drop-shadow-xl"
         />
@@ -79,14 +76,14 @@ const roadmap = [];
         </a>
 
         <a
-          href="/activities"
+          href={`${BASE}activities/`}
           class="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-semibold text-sid-navy hover:bg-gray-50 transition"
         >
           Ver actividades
         </a>
 
         <a
-          href="/courses"
+          href={`${BASE}courses/`}
           class="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-semibold text-sid-navy hover:bg-gray-50 transition"
         >
           Ver cursos
@@ -95,7 +92,7 @@ const roadmap = [];
     </div>
   </section>
 
-  <!-- QUÉ HACEMOS (reutilizada como bloque institucional: Misión / Visión) -->
+  <!-- QUÉ HACEMOS -->
   <section class="py-10 space-y-6">
     <h2 class="font-poppins text-2xl text-sid-navy">Misión y visión</h2>
 
@@ -105,23 +102,23 @@ const roadmap = [];
           title: "Misión",
           desc: "Fortalecer la formación de estudiantes a través de aprendizaje aplicado, trabajo colaborativo y producción de entregables documentados (proyectos, guías y recursos).",
           href: site.joinUrl,
-          external: true
+          external: true,
         },
         {
           title: "Visión",
           desc: "Consolidar un referente estudiantil en innovación y desarrollo dentro de la Universidad Distrital, con cultura de calidad, documentación y mejora continua.",
           href: site.joinUrl,
-          external: true
+          external: true,
         },
         {
           title: "Líneas de trabajo",
           desc: "Actividades prácticas (hackatones, maratones y dinámicas), formación por cursos y acompañamiento entre pares para construir bases sólidas.",
-          href: "/activities"
+          href: `${BASE}activities/`,
         },
         {
           title: "Principios",
           desc: "Rigor académico, transparencia, colaboración y enfoque en impacto. Priorizamos procesos simples, resultados verificables y comunicación clara.",
-          href: "#recursos"
+          href: "#recursos",
         },
       ].map((c) => (
         <a
@@ -137,7 +134,7 @@ const roadmap = [];
     </div>
   </section>
 
-  <!-- GALERÍA (scroll horizontal tipo carrusel simple) -->
+  <!-- GALERÍA -->
   <section class="py-10 space-y-6">
     <h2 class="font-poppins text-2xl text-sid-navy">Galería</h2>
 
@@ -150,15 +147,7 @@ const roadmap = [];
     </div>
   </section>
 
-  <!-- ROADMAP (eliminado) -->
-  {/*
-  <section class="py-10 space-y-6">
-    <h2 class="font-poppins text-2xl text-sid-navy">Roadmap</h2>
-    ...
-  </section>
-  */}
-
-  <!-- RECURSOS (ahora "Contáctanos") -->
+  <!-- CONTÁCTANOS -->
   <section id="recursos" class="py-10 space-y-6">
     <h2 class="font-poppins text-2xl text-sid-navy">Contáctanos</h2>
 

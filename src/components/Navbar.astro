@@ -1,16 +1,17 @@
 ---
 import site from "../data/site.json";
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <nav class="sticky top-0 z-50 bg-sid-navy text-white border-b border-white/10">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="font-poppins font-bold text-lg tracking-wide">SID</a>
+    <a href={BASE} class="font-poppins font-bold text-lg tracking-wide">SID</a>
 
     <div class="hidden md:flex items-center gap-8 font-montserrat text-sm">
-      <a class="hover:text-sid-cyan transition" href="/">Inicio</a>
-      <a class="hover:text-sid-cyan transition" href="/activities">Actividades</a>
-      <a class="hover:text-sid-cyan transition" href="/courses">Cursos</a>
-      <a class="hover:text-sid-cyan transition" href="/team">Equipo</a>
+      <a class="hover:text-sid-cyan transition" href={BASE}>Inicio</a>
+      <a class="hover:text-sid-cyan transition" href={`${BASE}activities/`}>Actividades</a>
+      <a class="hover:text-sid-cyan transition" href={`${BASE}courses/`}>Cursos</a>
+      <a class="hover:text-sid-cyan transition" href={`${BASE}team/`}>Equipo</a>
     </div>
 
     <a

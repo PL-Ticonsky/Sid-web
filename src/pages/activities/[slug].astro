@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
+const BASE = import.meta.env.BASE_URL;
+
 export async function getStaticPaths() {
   const items = await getCollection("activities");
   return items.map((item) => ({
@@ -12,16 +14,22 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await item.render();
+
+// Arregla covers tipo "/images/..." para GitHub Pages (base /Sid-web/)
+const coverSrc =
+  typeof item.data.cover === "string" && item.data.cover.startsWith("/")
+    ? `${BASE}${item.data.cover.slice(1)}`
+    : item.data.cover;
 ---
 
 <BaseLayout title={`SID · ${item.data.title}`}>
   <section class="space-y-10">
     <!-- Header -->
     <header class="space-y-5">
-      {item.data.cover && (
+      {coverSrc && (
         <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
           <img
-            src={item.data.cover}
+            src={coverSrc}
             alt={item.data.title}
             class="w-full max-h-[420px] object-cover"
             loading="eager"

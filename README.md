@@ -1,43 +1,128 @@
-# Astro Starter Kit: Minimal
+# SID Web  
+**Sociedad de Innovación y Desarrollo**
 
-```sh
-npm create astro@latest -- --template minimal
+Sitio web oficial de la Sociedad de Innovación y Desarrollo (SID).
+
+Plataforma institucional diseñada para:
+
+- Presentar el grupo de trabajo  
+- Mostrar sus actividades académicas y formativas  
+- Publicar los cursos ofrecidos  
+- Visibilizar el equipo principal  
+- Canalizar postulaciones mediante formulario externo  
+
+El sitio es completamente estático y está orientado a comunicación académica clara, estructurada y mantenible.
+
+---
+
+## Naturaleza del Proyecto
+
+Este no es un sistema web dinámico.
+
+No incluye:
+
+- Base de datos  
+- Backend  
+- Autenticación  
+- Panel administrativo  
+- Sistema de noticias  
+- Eventos con fecha  
+
+Es una arquitectura deliberadamente simple, enfocada en rendimiento, claridad estructural y sostenibilidad técnica.
+
+---
+
+## Stack Tecnológico
+
+### Framework  
+**Astro (Static Site Generator)**  
+
+Generación de HTML estático optimizado, arquitectura basada en componentes y manejo estructurado de contenido.
+
+### Estilos  
+**Tailwind CSS**  
+
+Sistema utility-first con tokens de marca centralizados.
+
+### Modelo de Contenido  
+
+- Markdown  
+- Frontmatter YAML  
+- JSON / YAML para datos estructurados simples  
+
+### Despliegue  
+
+- GitHub Pages  
+- GitHub Actions (build automático)
+
+---
+
+## Identidad Visual
+
+**Tipografías**
+
+- Poppins (títulos)  
+- Montserrat (texto)
+
+**Paleta institucional**
+
+- `#181D36`  
+- `#286D8C`  
+- `#38BCE2`  
+- `#866FB1`  
+- `#E41376`
+
+**Estética**
+
+Semi-formal académica, limpia y jerárquicamente clara.
+
+---
+
+## Estructura del Proyecto
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
+sid-web/
+│
 ├── src/
+│   ├── content/
+│   │   ├── activities/
+│   │   └── courses/
+│   │
+│   ├── data/
+│   ├── components/
+│   ├── layouts/
 │   └── pages/
-│       └── index.astro
+│
+├── public/
+│   └── images/
+│
+├── adrs/
+├── astro.config.mjs
+├── tailwind.config.cjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Enfoque Arquitectónico
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Separación clara entre contenido y presentación  
+- Crecimiento por contenido, no por complejidad técnica  
+- Infraestructura mínima  
+- Máximo rendimiento  
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Público Objetivo
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Estudiantes universitarios de la  
+**Universidad Distrital Francisco José de Caldas**
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Estado
+
+Proyecto en evolución controlada.  
+Arquitectura estable.  
+Stack consolidado.  
+Despliegue automatizado.

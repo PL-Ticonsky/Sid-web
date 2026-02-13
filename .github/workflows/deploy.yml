@@ -1,9 +1,8 @@
-name: Deploy Astro to GitHub Pages
-
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
+name: Deploy Astro to GitHub Pages
 
 permissions:
   contents: read

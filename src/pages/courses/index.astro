@@ -12,13 +12,16 @@ const courses = await getCollection("courses");
   <h1 class="font-poppins text-3xl mb-8">Cursos</h1>
 
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {courses.map((c) => (
-      <Card
-        href={`${BASE}courses/${c.slug}/`}
-        title={c.data.title}
-        image={c.data.cover}
-        ctaLabel="Ver curso"
-      />
-    ))}
+    {courses.map((c) => {
+      const slug = c.data.slug ?? c.slug;
+      return (
+        <Card
+          href={`${BASE}courses/${slug}/`}
+          title={c.data.title}
+          image={c.data.cover}
+          ctaLabel="Ver curso"
+        />
+      );
+    })}
   </div>
 </BaseLayout>

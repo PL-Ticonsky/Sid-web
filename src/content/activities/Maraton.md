@@ -46,7 +46,7 @@ resources:
     url: "https://online.stanford.edu/"
     note: "Referencia académica."
 
-formUrl: "aquiPonerLaURL"
+formUrl: "https://example.com/forms/integracion"
 ---
 
 ## Enfoque de la actividad

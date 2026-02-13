@@ -9,52 +9,52 @@ const gallery = [
   "/images/activities/demo.webp",
 ];
 
+// Ahora es "Contáctanos"
 const resources = [
-  { label: "Repositorio del grupo (GitHub)", url: "https://github.com/" },
-  { label: "Guía de contribución", url: "https://github.com/" },
-  { label: "Recursos curados (documentación)", url: "https://docs.astro.build/" },
+  { label: "Correo institucional", url: "mailto:sid@correo.edu.co" },
+  { label: "Formulario de contacto", url: "https://forms.gle/" },
+  { label: "Repositorio (GitHub)", url: "https://github.com/" },
+  { label: "Redes sociales", url: "https://instagram.com/" },
 ];
 
-const roadmap = [
-  { module: "Módulo 1", topics: ["Tema A", "Tema B"] },
-  { module: "Módulo 2", topics: ["Tema C"] },
-];
+const roadmap = [];
 ---
 
 <BaseLayout title="SID · Inicio">
   <!-- HERO -->
-   <section class="py-16">
-  <div class="grid md:grid-cols-2 items-center gap-10">
+  <section class="py-16">
+    <div class="grid md:grid-cols-2 items-center gap-10">
+      <!-- Texto -->
+      <div>
+        <h1 class="font-poppins text-4xl md:text-5xl text-sid-navy">
+          Sociedad de Innovación y Desarrollo
+        </h1>
 
-    <!-- Texto -->
-    <div>
-      <h1 class="font-poppins text-4xl md:text-5xl text-sid-navy">
-        Sociedad de Innovación y Desarrollo
-      </h1>
+        <p class="mt-4 text-slate-700 leading-relaxed max-w-xl">
+          Iniciativa estudiantil de la Universidad Distrital Francisco José de Caldas orientada a la formación aplicada,
+          la experimentación responsable y el desarrollo de proyectos con impacto académico y social.
+        </p>
 
-      <p class="mt-4 text-slate-700 leading-relaxed max-w-xl">
-        Comunidad estudiantil orientada a la formación, experimentación y construcción de soluciones con impacto.
-      </p>
+        <div class="mt-6 flex gap-3">
+          <a
+            href={site.joinUrl}
+            class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold"
+          >
+            Únete
+          </a>
+        </div>
+      </div>
 
-      <div class="mt-6 flex gap-3">
-        <a href={site.joinUrl}
-           class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold">
-          Únete
-        </a>
+      <!-- Pacha -->
+      <div class="flex justify-center md:justify-end">
+        <img
+          src="/images/brand/pachas.webp"
+          alt="Pacha, mascota oficial de SID"
+          class="w-64 md:w-80 drop-shadow-xl"
+        />
       </div>
     </div>
-
-    <!-- Pacha -->
-    <div class="flex justify-center md:justify-end">
-      <img
-        src="/images/brand/pacha.webp"
-        alt="Pacha - Mascota SID"
-        class="w-64 md:w-80 drop-shadow-xl"
-      />
-    </div>
-
-  </div>
-</section>
+  </section>
 
   <section class="py-10">
     <div class="rounded-3xl border border-gray-200 bg-white p-8 md:p-12">
@@ -63,7 +63,9 @@ const roadmap = [
       </h1>
 
       <p class="mt-4 max-w-2xl text-slate-700 leading-relaxed">
-        Poner aqui el texto que se desee xDDD
+        Somos un proyecto académico estudiantil: organizamos actividades prácticas, compartimos formación estructurada y
+        documentamos lo aprendido. El objetivo es reducir la brecha entre teoría y práctica mediante trabajo colaborativo
+        y procesos claros.
       </p>
 
       <div class="mt-7 flex flex-wrap gap-3">
@@ -93,16 +95,34 @@ const roadmap = [
     </div>
   </section>
 
-  <!-- QUÉ HACEMOS -->
+  <!-- QUÉ HACEMOS (reutilizada como bloque institucional: Misión / Visión) -->
   <section class="py-10 space-y-6">
-    <h2 class="font-poppins text-2xl text-sid-navy">¿Qué hacemos?</h2>
+    <h2 class="font-poppins text-2xl text-sid-navy">Misión y visión</h2>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {[
-        { title: "Actividades", desc: "Hackatones, dinámicas y retos prácticos.", href: "/activities" },
-        { title: "Cursos", desc: "Formación estructurada con recursos y temario.", href: "/courses" },
-        { title: "Comunidad", desc: "Aprendizaje colaborativo y acompañamiento.", href: site.joinUrl, external: true },
-        { title: "Recursos", desc: "Material libre y curado para estudiar.", href: "#recursos" },
+        {
+          title: "Misión",
+          desc: "Fortalecer la formación de estudiantes a través de aprendizaje aplicado, trabajo colaborativo y producción de entregables documentados (proyectos, guías y recursos).",
+          href: site.joinUrl,
+          external: true
+        },
+        {
+          title: "Visión",
+          desc: "Consolidar un referente estudiantil en innovación y desarrollo dentro de la Universidad Distrital, con cultura de calidad, documentación y mejora continua.",
+          href: site.joinUrl,
+          external: true
+        },
+        {
+          title: "Líneas de trabajo",
+          desc: "Actividades prácticas (hackatones, maratones y dinámicas), formación por cursos y acompañamiento entre pares para construir bases sólidas.",
+          href: "/activities"
+        },
+        {
+          title: "Principios",
+          desc: "Rigor académico, transparencia, colaboración y enfoque en impacto. Priorizamos procesos simples, resultados verificables y comunicación clara.",
+          href: "#recursos"
+        },
       ].map((c) => (
         <a
           href={c.href}
@@ -112,7 +132,6 @@ const roadmap = [
         >
           <div class="font-poppins font-semibold text-lg text-sid-navy">{c.title}</div>
           <p class="mt-2 text-sm leading-relaxed text-slate-700">{c.desc}</p>
-          <div class="mt-4 text-sm font-semibold text-sid-blue">Explorar →</div>
         </a>
       ))}
     </div>
@@ -125,31 +144,28 @@ const roadmap = [
     <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
       {gallery.map((src) => (
         <div class="snap-start min-w-[280px] sm:min-w-[360px] overflow-hidden rounded-2xl border bg-gray-100">
-          <img src={src} alt="Galería SID" class="h-56 w-full object-cover" loading="lazy" />
+          <img src={src} alt="Galería de actividades SID" class="h-56 w-full object-cover" loading="lazy" />
         </div>
       ))}
     </div>
   </section>
 
-  <!-- ROADMAP -->
+  <!-- ROADMAP (eliminado) -->
+  {/*
   <section class="py-10 space-y-6">
     <h2 class="font-poppins text-2xl text-sid-navy">Roadmap</h2>
-
-    <div class="space-y-4">
-      {roadmap.map((m) => (
-        <div class="rounded-2xl border border-gray-200 bg-white p-6">
-          <div class="font-poppins font-semibold text-lg text-sid-navy">{m.module}</div>
-          <ul class="mt-3 list-disc pl-6 space-y-1 text-slate-700">
-            {m.topics.map((t) => <li>{t}</li>)}
-          </ul>
-        </div>
-      ))}
-    </div>
+    ...
   </section>
+  */}
 
-  <!-- RECURSOS -->
+  <!-- RECURSOS (ahora "Contáctanos") -->
   <section id="recursos" class="py-10 space-y-6">
-    <h2 class="font-poppins text-2xl text-sid-navy">Recursos</h2>
+    <h2 class="font-poppins text-2xl text-sid-navy">Contáctanos</h2>
+
+    <p class="max-w-2xl text-slate-700 leading-relaxed">
+      Para alianzas, propuestas de actividades, participación como ponente o vinculación al equipo, usa cualquiera de
+      estos canales. Respondemos por orden de llegada.
+    </p>
 
     <div class="space-y-3">
       {resources.map((r) => (

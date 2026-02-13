@@ -5,7 +5,6 @@ type: "Maratón"
 description: "Competencia académica centrada en resolución de problemas algorítmicos en tiempo limitado."
 duration: "6 horas"
 modality: "Presencial / Virtual"
-joinUrl: "https://forms.office.com/r/7Q8VqBL8p6"
 
 objectives:
   - Fortalecer pensamiento lógico.
@@ -47,7 +46,7 @@ resources:
     url: "https://online.stanford.edu/"
     note: "Referencia académica."
 
-formUrl: "https://example.com/forms/maraton"
+formUrl: "aquiPonerLaURL"
 ---
 
 ## Enfoque de la actividad

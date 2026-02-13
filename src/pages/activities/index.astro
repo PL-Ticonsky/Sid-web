@@ -1,7 +1,9 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"   ;
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import Card from "../../components/Card.astro";
+
+const BASE = import.meta.env.BASE_URL;
 
 const activities = await getCollection("activities");
 ---
@@ -12,7 +14,7 @@ const activities = await getCollection("activities");
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {activities.map((a) => (
       <Card
-        href={`/activities/${a.slug}`}
+        href={`${BASE}activities/${a.slug}/`}
         title={a.data.title}
         image={a.data.cover}
         type={a.data.type}

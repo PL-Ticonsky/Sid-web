@@ -1,0 +1,227 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const BASE = import.meta.env.BASE_URL;
+const FORM_ACTION = "https://formspree.io/f/mykdjqaw";
+const thanksUrl = new URL(`${BASE}thanks/`, Astro.url).toString();
+---
+
+<BaseLayout title="SID · Únete">
+  <section class="mx-auto max-w-2xl px-4 py-12">
+    <header class="mb-8 space-y-2">
+      <h1 class="font-poppins text-3xl">Únete a SID</h1>
+      <p class="text-gray-600">
+        Completa este formulario para postularte. Te contactaremos al correo institucional.
+      </p>
+    </header>
+
+    <form
+      id="joinForm"
+      action={FORM_ACTION}
+      method="POST"
+      data-thanks={thanksUrl}
+      class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm space-y-6"
+    >
+      <!-- Asunto del correo -->
+      <input type="hidden" name="_subject" value="Nueva inscripción SID" />
+
+      <!-- Honeypot anti-spam -->
+      <div class="hidden" aria-hidden="true">
+        <label>
+          No llenar:
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <!-- 1) Nombre -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium">
+          Nombre completo <span class="text-red-600">*</span>
+        </label>
+        <input
+          name="full_name"
+          required
+          autocomplete="name"
+          class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+          placeholder="Tu nombre"
+        />
+      </div>
+
+      <!-- 2) Código -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium">Código <span class="text-red-600">*</span></label>
+        <input
+          name="code"
+          required
+          inputmode="numeric"
+          class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+          placeholder="Tu código"
+        />
+      </div>
+
+      <!-- 3) Correo institucional -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium">
+          Correo institucional <span class="text-red-600">*</span>
+        </label>
+        <input
+          name="institutional_email"
+          id="institutionalEmail"
+          type="email"
+          required
+          autocomplete="email"
+          class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+          placeholder="nombre@udistrital.edu.co"
+        />
+      </div>
+
+      <!-- 4) Crédito -->
+      <fieldset class="space-y-2">
+        <legend class="text-sm font-medium">
+          ¿Ya tienes el crédito? <span class="text-red-600">*</span>
+        </legend>
+        <div class="flex gap-6">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_credit" value="SI" required />
+            <span>SI</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="has_credit" value="NO" required />
+            <span>NO</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 5) Pensum -->
+      <fieldset class="space-y-2" id="pensumFieldset">
+        <legend class="text-sm font-medium">
+          ¿A qué pensum perteneces? <span class="text-red-600">*</span>
+        </legend>
+        <div class="flex gap-6">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="pensum" value="NUEVO" required />
+            <span>Nuevo</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="pensum" value="ANTIGUO" required />
+            <span>Antiguo</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 6) Si es antiguo -->
+      <div class="space-y-2" id="oldPensumBlock" style="display:none;">
+        <label class="text-sm font-medium">
+          Si es el antiguo, indícanos qué grupo de trabajo estás viendo (Ej: grupo de trabajo 2, código de la materia)
+          <span class="text-red-600">*</span>
+        </label>
+        <input
+          name="old_pensum_group"
+          id="oldPensumInput"
+          class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+          placeholder="Ej: GT2 - XYZ123"
+        />
+      </div>
+
+      <!-- 7) Descripción -->
+      <div class="space-y-2">
+        <label class="text-sm font-medium">
+          Cuéntanos un poco de ti, cuáles son tus habilidades o qué esperas del grupo de trabajo
+          <span class="text-red-600">*</span>
+        </label>
+        <textarea
+          name="about_you"
+          required
+          rows="5"
+          class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+          placeholder="Escribe aquí..."
+        ></textarea>
+      </div>
+
+      <button
+        id="submitBtn"
+        type="submit"
+        class="w-full rounded-xl bg-[#E41376] px-5 py-3 font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#38BCE2]"
+      >
+        Enviar inscripción
+      </button>
+
+      <p id="formMsg" class="text-sm hidden"></p>
+
+      <p class="text-xs text-gray-500">
+        Nos reservamos el derecho de admisión, cupos limitados.
+      </p>
+    </form>
+  </section>
+
+  <script>
+    const form = document.getElementById("joinForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const msg = document.getElementById("formMsg");
+
+    function setMsg(text, ok) {
+      if (!msg) return;
+      msg.textContent = text;
+      msg.classList.remove("hidden");
+      msg.classList.toggle("text-green-700", !!ok);
+      msg.classList.toggle("text-red-700", !ok);
+    }
+
+    // Condicional pensum antiguo
+    const oldBlock = document.getElementById("oldPensumBlock");
+    const oldInput = document.getElementById("oldPensumInput");
+    const pensumFieldset = document.getElementById("pensumFieldset");
+
+    function updateOldPensum() {
+      const checked = document.querySelector('input[name="pensum"]:checked');
+      const isOld = !!checked && checked.value === "ANTIGUO";
+
+      if (oldBlock) oldBlock.style.display = isOld ? "block" : "none";
+      if (oldInput) {
+        oldInput.required = isOld;
+        if (!isOld) oldInput.value = "";
+      }
+    }
+
+    pensumFieldset?.addEventListener("change", updateOldPensum);
+    updateOldPensum();
+
+    // Enviar + redirigir (sin pagar redirect de Formspree)
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!form) return;
+
+      const THANKS_URL = form.dataset.thanks || "/thanks/";
+
+      if (submitBtn) submitBtn.disabled = true;
+      setMsg("Enviando...", true);
+
+      try {
+        const fd = new FormData(form);
+
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: fd,
+          headers: { Accept: "application/json" },
+        });
+
+        if (res.ok) {
+          window.location.assign(THANKS_URL);
+          return;
+        }
+
+        let errText = "No se pudo enviar. Intenta de nuevo.";
+        try {
+          const data = await res.json();
+          if (data?.errors?.length) errText = data.errors.map((x) => x.message).join(" · ");
+        } catch {}
+
+        setMsg(errText, false);
+      } catch {
+        setMsg("Error de red. Revisa tu conexión e intenta de nuevo.", false);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  </script>
+</BaseLayout>

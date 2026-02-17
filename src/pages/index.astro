@@ -13,15 +13,6 @@ const gallery = [
   `${BASE}images/activities/carrusel5.webp`,
   `${BASE}images/activities/carrusel6.webp`,
   `${BASE}images/activities/carrusel7.webp`,
-  
-];
-
-// Ahora es "Contáctanos"
-const resources = [
-  { label: "Correo institucional", url: "Sidud@udistrital.edu.co" },
-  { label: "Formulario de contacto", url: "https://forms.office.com/r/7Q8VqBL8p6" },
-  { label: "Repositorio (GitHub)", url: "https://github.com/UDSID" },
-  { label: "Redes sociales", url: "https://www.instagram.com/sid.ud?igsh=MndjM3o4OGVveTQw" },
 ];
 ---
 
@@ -41,7 +32,10 @@ const resources = [
         </p>
 
         <div class="mt-6 flex gap-3">
-          <a href={site.joinUrl} class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold">
+          <a
+            href={site.joinUrl}
+            class="bg-sid-pink px-5 py-2.5 rounded-xl text-white font-semibold"
+          >
             Únete
           </a>
         </div>
@@ -97,7 +91,7 @@ const resources = [
     </div>
   </section>
 
-  <!-- QUÉ HACEMOS -->
+  <!-- MISIÓN Y VISIÓN -->
   <section class="py-10 space-y-6">
     <h2 class="font-poppins text-2xl text-sid-navy">Misión y visión</h2>
 
@@ -123,7 +117,8 @@ const resources = [
         {
           title: "Principios",
           desc: "Rigor académico, transparencia, colaboración y enfoque en impacto. Priorizamos procesos simples, resultados verificables y comunicación clara.",
-          href: "#recursos",
+          href: site.joinUrl,
+          external: true,
         },
       ].map((c) => (
         <a
@@ -139,49 +134,35 @@ const resources = [
     </div>
   </section>
 
-<section class="py-12 space-y-6">
-  <h2 class="font-poppins text-3xl text-sid-navy">Galería</h2>
+  <!-- GALERÍA -->
+  <section class="py-12 space-y-6">
+    <h2 class="font-poppins text-3xl text-sid-navy">Galería</h2>
 
-  {/* Hero */}
-  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
-    <div class="aspect-[21/9]">
-      <img src={gallery[0]} alt="Galería SID" class="h-full w-full object-cover" loading="eager" />
-    </div>
-  </div>
-
-  {/* Thumbs */}
-  <div class="flex gap-4 overflow-x-auto pb-2">
-    {gallery.slice(1).map((src) => (
-      <div class="min-w-[180px] sm:min-w-[220px] overflow-hidden rounded-xl border border-gray-200 bg-gray-100">
-        <div class="aspect-[16/9]">
-          <img src={src} alt="Galería SID" class="h-full w-full object-cover" loading="lazy" />
-        </div>
+    {/* Hero */}
+    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
+      <div class="aspect-[21/9]">
+        <img
+          src={gallery[0]}
+          alt="Galería SID"
+          class="h-full w-full object-cover"
+          loading="eager"
+        />
       </div>
-    ))}
-  </div>
-</section>
+    </div>
 
-
-
-  <!-- CONTÁCTANOS -->
-  <section id="recursos" class="py-10 space-y-6">
-    <h2 class="font-poppins text-2xl text-sid-navy">Contáctanos</h2>
-
-    <p class="max-w-2xl text-slate-700 leading-relaxed">
-      Para alianzas, propuestas de actividades, participación como ponente o vinculación al equipo, usa cualquiera de
-      estos canales. Respondemos por orden de llegada.
-    </p>
-
-    <div class="space-y-3">
-      {resources.map((r) => (
-        <a
-          href={r.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="block rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition"
-        >
-          <div class="font-semibold text-sid-blue">{r.label}</div>
-        </a>
+    {/* Thumbs */}
+    <div class="flex gap-4 overflow-x-auto pb-2">
+      {gallery.slice(1).map((src) => (
+        <div class="min-w-[180px] sm:min-w-[220px] overflow-hidden rounded-xl border border-gray-200 bg-gray-100">
+          <div class="aspect-[16/9]">
+            <img
+              src={src}
+              alt="Galería SID"
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
       ))}
     </div>
   </section>

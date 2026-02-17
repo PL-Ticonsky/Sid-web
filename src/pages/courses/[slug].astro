@@ -7,7 +7,7 @@ const BASE = import.meta.env.BASE_URL;
 export async function getStaticPaths() {
   const items = await getCollection("courses");
   return items.map((item) => ({
-    params: { slug: item.slug },
+    params: { slug: item.data.slug ?? item.slug },
     props: { item },
   }));
 }
@@ -15,7 +15,6 @@ export async function getStaticPaths() {
 const { item } = Astro.props;
 const { Content } = await item.render();
 
-// Arregla covers tipo "/images/..." para GitHub Pages (base /Sid-web/)
 const coverSrc =
   typeof item.data.cover === "string" && item.data.cover.startsWith("/")
     ? `${BASE}${item.data.cover.slice(1)}`
@@ -24,7 +23,6 @@ const coverSrc =
 
 <BaseLayout title={`SID · ${item.data.title}`}>
   <section class="space-y-12">
-    <!-- Header -->
     <header class="space-y-6">
       {coverSrc && (
         <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
@@ -63,7 +61,6 @@ const coverSrc =
       </div>
     </header>
 
-    <!-- Objetivos -->
     {item.data.objectives?.length > 0 && (
       <section class="space-y-4">
         <h2 class="font-poppins text-2xl text-sid-navy">Objetivos</h2>
@@ -73,7 +70,6 @@ const coverSrc =
       </section>
     )}
 
-    <!-- Prerrequisitos -->
     {item.data.prerequisites?.length > 0 && (
       <section class="space-y-4">
         <h2 class="font-poppins text-2xl text-sid-navy">Prerrequisitos</h2>
@@ -83,7 +79,6 @@ const coverSrc =
       </section>
     )}
 
-    <!-- Temario -->
     {item.data.syllabus?.length > 0 && (
       <section class="space-y-4">
         <h2 class="font-poppins text-2xl text-sid-navy">Temario</h2>
@@ -106,7 +101,6 @@ const coverSrc =
       </section>
     )}
 
-    <!-- Recursos -->
     {item.data.resources?.length > 0 && (
       <section class="space-y-4">
         <h2 class="font-poppins text-2xl text-sid-navy">Recursos</h2>
@@ -127,7 +121,6 @@ const coverSrc =
       </section>
     )}
 
-    <!-- Contenido libre (Markdown) -->
     <section class="space-y-4">
       <h2 class="font-poppins text-2xl text-sid-navy">Descripción</h2>
       <article class="space-y-4 leading-relaxed text-slate-700">

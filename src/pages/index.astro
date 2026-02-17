@@ -18,10 +18,10 @@ const gallery = [
 
 // Ahora es "Contáctanos"
 const resources = [
-  { label: "Correo institucional", url: "mailto:sid@correo.edu.co" },
-  { label: "Formulario de contacto", url: "https://forms.gle/" },
-  { label: "Repositorio (GitHub)", url: "https://github.com/" },
-  { label: "Redes sociales", url: "https://instagram.com/" },
+  { label: "Correo institucional", url: "Sidud@udistrital.edu.co" },
+  { label: "Formulario de contacto", url: "https://forms.office.com/r/7Q8VqBL8p6" },
+  { label: "Repositorio (GitHub)", url: "https://github.com/UDSID" },
+  { label: "Redes sociales", url: "https://www.instagram.com/sid.ud?igsh=MndjM3o4OGVveTQw" },
 ];
 ---
 
@@ -139,23 +139,28 @@ const resources = [
     </div>
   </section>
 
-<!-- GALERÍA -->
 <section class="py-12 space-y-6">
   <h2 class="font-poppins text-3xl text-sid-navy">Galería</h2>
 
-  <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6">
-    {gallery.map((src) => (
-      <div class="snap-start min-w-[320px] sm:min-w-[420px] lg:min-w-[520px] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
-        <img
-          src={src}
-          alt="Galería de actividades SID"
-          class="h-64 sm:h-72 lg:h-80 w-full object-cover"
-          loading="lazy"
-        />
+  {/* Hero */}
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-100">
+    <div class="aspect-[21/9]">
+      <img src={gallery[0]} alt="Galería SID" class="h-full w-full object-cover" loading="eager" />
+    </div>
+  </div>
+
+  {/* Thumbs */}
+  <div class="flex gap-4 overflow-x-auto pb-2">
+    {gallery.slice(1).map((src) => (
+      <div class="min-w-[180px] sm:min-w-[220px] overflow-hidden rounded-xl border border-gray-200 bg-gray-100">
+        <div class="aspect-[16/9]">
+          <img src={src} alt="Galería SID" class="h-full w-full object-cover" loading="lazy" />
+        </div>
       </div>
     ))}
   </div>
 </section>
+
 
 
   <!-- CONTÁCTANOS -->

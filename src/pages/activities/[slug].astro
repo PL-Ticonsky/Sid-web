@@ -15,15 +15,16 @@ export async function getStaticPaths() {
 const { item } = Astro.props;
 const { Content } = await item.render();
 
-// Arregla covers tipo "/images/..." para GitHub Pages (base /Sid-web/)
+// Cover para GitHub Pages
 const coverSrc =
   typeof item.data.cover === "string" && item.data.cover.startsWith("/")
     ? `${BASE}${item.data.cover.slice(1)}`
     : item.data.cover;
 
-// "Próximamente" para Actividades y Maratón
-const t = (item.data.type ?? "").toString().toLowerCase();
-const isComingSoon = t.includes("marat") || t.includes("actividad");
+// Status / Date (control desde frontmatter)
+const status = (item.data.status ?? "").toString().toLowerCase();
+const dateLabel = item.data.date; // puede ser "2026-03-10" o "Marzo 2026"
+const isComingSoon = status === "proximamente" || !!dateLabel;
 ---
 
 <BaseLayout title={`SID · ${item.data.title}`}>
@@ -51,7 +52,7 @@ const isComingSoon = t.includes("marat") || t.includes("actividad");
 
           {isComingSoon && (
             <span class="inline-flex items-center rounded-full bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700">
-              PRÓXIMAMENTE
+              {dateLabel ? dateLabel : "PRÓXIMAMENTE"}
             </span>
           )}
         </div>

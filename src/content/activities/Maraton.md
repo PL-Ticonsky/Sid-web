@@ -5,6 +5,7 @@ type: "Maratón"
 description: "Competencia académica centrada en resolución de problemas algorítmicos en tiempo limitado."
 duration: "6 horas"
 modality: "Presencial / Virtual"
+status: "proximamente"
 
 objectives:
   - Fortalecer pensamiento lógico.

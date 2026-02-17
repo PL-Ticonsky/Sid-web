@@ -5,6 +5,9 @@ type: "Actividad de Integración"
 description: "Espacio colaborativo orientado a fortalecer comunidad mediante dinámicas técnicas y sociales."
 duration: "4 horas"
 modality: "Presencial"
+status: "proximamente"
+date: "Todos los viernes"
+
 
 objectives:
   - Integrar nuevos miembros al grupo.
@@ -55,3 +58,4 @@ La prioridad es la construcción de comunidad técnica sólida, más allá del r
 - Integración efectiva de nuevos miembros.
 - Formación de equipos para proyectos futuros.
 - Fortalecimiento de identidad institucional.
+- Addres : Caracas avenue #19

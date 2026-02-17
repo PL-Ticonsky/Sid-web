@@ -5,6 +5,8 @@ type: "Hackatón"
 description: "Jornada intensiva de desarrollo enfocada en la creación de una landing page funcional en equipos interdisciplinarios."
 duration: "8 horas"
 modality: "Presencial"
+status: "proximamente"
+
 
 objectives:
   - Aplicar conocimientos básicos de desarrollo web en un entorno práctico.

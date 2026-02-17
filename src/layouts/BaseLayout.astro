@@ -1,6 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
+import contact from "../data/contact.json";
 
 const { title = "SID" } = Astro.props;
 ---
@@ -9,9 +10,7 @@ const { title = "SID" } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>{title}</title>
-
     <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
 
@@ -22,8 +21,45 @@ const { title = "SID" } = Astro.props;
       <slot />
     </main>
 
-    <footer class="border-t mt-20 py-8 text-center text-sm text-gray-500">
-      © {new Date().getFullYear()} Sociedad de Innovación y Desarrollo · Developed by Ticonsky
+    <footer class="border-t mt-20 py-10">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="space-y-2">
+            <div class="font-poppins font-semibold text-sid-navy">Contacto</div>
+            {contact.location && (
+              <div class="text-sm text-slate-600">{contact.location}</div>
+            )}
+            {contact.email && (
+              <div class="text-sm text-slate-600">
+                Correo: <span class="font-medium text-slate-700">{contact.email}</span>
+              </div>
+            )}
+          </div>
+
+          <div class="space-y-2 md:text-right">
+            <div class="font-poppins font-semibold text-sid-navy">Redes</div>
+            {contact.instagram && (
+              <div class="text-sm text-slate-600">
+                Instagram: <span class="font-medium text-slate-700">{contact.instagram}</span>
+              </div>
+            )}
+            {contact.linkedin && (
+              <div class="text-sm text-slate-600">
+                LinkedIn: <span class="font-medium text-slate-700">{contact.linkedin}</span>
+              </div>
+            )}
+            {contact.github && (
+              <div class="text-sm text-slate-600">
+                GitHub: <span class="font-medium text-slate-700">{contact.github}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-xs text-slate-500">
+          © {new Date().getFullYear()} Sociedad de Innovación y Desarrollo · Developed by Ticonsky
+        </div>
+      </div>
     </footer>
   </body>
 </html>

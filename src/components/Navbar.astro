@@ -1,23 +1,171 @@
 ---
+import site from "../data/site.json";
 const BASE = import.meta.env.BASE_URL;
+
+const links = [
+  { label: "Inicio", href: `${BASE}` },
+  { label: "Actividades", href: `${BASE}activities/` },
+  { label: "Cursos", href: `${BASE}courses/` },
+  { label: "Equipo", href: `${BASE}team/` },
+];
 ---
 
-<nav class="sticky top-0 z-50 bg-sid-navy text-white border-b border-white/10">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href={BASE} class="font-poppins font-bold text-lg tracking-wide">SID</a>
+<header class="sticky top-0 z-50 border-b border-white/10 bg-sid-navy/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <!-- Brand -->
+    <a href={`${BASE}`} class="font-poppins text-lg font-semibold text-white">
+      SID
+    </a>
 
-    <div class="hidden md:flex items-center gap-8 font-montserrat text-sm">
-      <a class="hover:text-sid-cyan transition" href={BASE}>Inicio</a>
-      <a class="hover:text-sid-cyan transition" href={`${BASE}activities/`}>Actividades</a>
-      <a class="hover:text-sid-cyan transition" href={`${BASE}courses/`}>Cursos</a>
-      <a class="hover:text-sid-cyan transition" href={`${BASE}team/`}>Equipo</a>
+    <!-- Desktop links -->
+    <div class="hidden items-center gap-7 md:flex">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="text-sm font-medium text-white/80 transition hover:text-white"
+        >
+          {l.label}
+        </a>
+      ))}
+
+      <a
+        href={site.joinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center rounded-xl bg-sid-pink px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+      >
+        Únete
+      </a>
     </div>
 
-    <a
-      href={`${BASE}join/`}
-      class="bg-sid-pink hover:opacity-90 transition px-4 py-2 rounded-md text-sm font-semibold"
+    <!-- Mobile hamburger -->
+    <button
+      id="nav-toggle"
+      class="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 p-2 text-white md:hidden"
+      type="button"
+      aria-label="Abrir menú"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
     >
-      Únete
-    </a>
+      <!-- Icon (hamburger) -->
+      <svg
+        id="icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="h-6 w-6"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+
+      <!-- Icon (close) -->
+      <svg
+        id="icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="hidden h-6 w-6"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu (overlay + panel) -->
+  <div id="mobile-menu" class="hidden md:hidden">
+    <!-- overlay -->
+    <div id="nav-overlay" class="fixed inset-0 z-40 bg-black/40"></div>
+
+    <!-- panel -->
+    <div
+      class="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm border-l border-white/10 bg-sid-navy/95 p-5 backdrop-blur"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menú"
+    >
+      <div class="flex items-center justify-between">
+        <div class="font-poppins text-base font-semibold text-white">Menú</div>
+        <button
+          id="nav-close"
+          class="rounded-xl border border-white/15 bg-white/5 p-2 text-white"
+          type="button"
+          aria-label="Cerrar menú"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mt-6 grid gap-2">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            class="rounded-xl px-3 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+          >
+            {l.label}
+          </a>
+        ))}
+
+        <div class="mt-3 h-px bg-white/10"></div>
+
+        <a
+          href={site.joinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-3 inline-flex items-center justify-center rounded-xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+        >
+          Únete
+        </a>
+      </div>
+    </div>
   </div>
-</nav>
+
+  <!-- Simple JS: toggle -->
+  <script is:inline>
+    const toggleBtn = document.getElementById("nav-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const overlay = document.getElementById("nav-overlay");
+    const closeBtn = document.getElementById("nav-close");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
+
+    function openMenu() {
+      menu.classList.remove("hidden");
+      toggleBtn.setAttribute("aria-expanded", "true");
+      iconOpen.classList.add("hidden");
+      iconClose.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      menu.classList.add("hidden");
+      toggleBtn.setAttribute("aria-expanded", "false");
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    toggleBtn?.addEventListener("click", () => {
+      const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    closeBtn?.addEventListener("click", closeMenu);
+    overlay?.addEventListener("click", closeMenu);
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    // cerrar al navegar (si el usuario toca un link)
+    menu?.addEventListener("click", (e) => {
+      const a = e.target.closest("a");
+      if (a) closeMenu();
+    });
+  </script>
+</header>

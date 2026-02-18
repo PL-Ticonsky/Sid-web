@@ -1,6 +1,6 @@
 ---
 title: "Hackatón SID · Desarrollo Web Express"
-cover: "/images/activities/Hackathon.webp"
+cover: "/images/activities/Hackaton.webp"
 type: "Hackatón"
 description: "Jornada intensiva de desarrollo enfocada en la creación de una landing page funcional en equipos interdisciplinarios."
 duration: "8 horas"

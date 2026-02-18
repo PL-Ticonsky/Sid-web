@@ -68,10 +68,11 @@ const principles = [
 
 <BaseLayout title="SID · Inicio">
   <!-- Fondo suave general -->
-  <div class="absolute inset-0 -z-10">
+  <div class="absolute inset-0 -z-10 overflow-x-hidden">
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-white"></div>
-    <div class="pointer-events-none absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-sid-cyan/20 blur-3xl"></div>
-    <div class="pointer-events-none absolute top-36 right-[-6rem] h-64 w-64 rounded-full bg-sid-pink/15 blur-3xl"></div>
+    <div class="pointer-events-none absolute -top-24 left-1/2 h-72 w-[min(42rem,92vw)] -translate-x-1/2 rounded-full bg-sid-cyan/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-36 right-[-3rem] sm:right-[-6rem] h-64 w-64 rounded-full bg-sid-pink/15 blur-3xl"></div>
+
   </div>
 
   <!-- HERO -->

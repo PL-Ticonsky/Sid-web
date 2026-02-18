@@ -75,119 +75,142 @@ const links = [
     </button>
   </nav>
 
- <!-- Mobile menu (overlay + premium sheet) -->
-<div id="mobile-menu" class="hidden md:hidden">
+<!-- Mobile menu (overlay + sheet) -->
+<div id="mobile-menu" class="md:hidden" data-open="false">
   <!-- overlay -->
   <div
     id="nav-overlay"
-    class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+    class="fixed inset-0 z-[999] hidden bg-black/60 backdrop-blur-sm"
   ></div>
 
   <!-- sheet -->
   <div
     id="nav-sheet"
-    class="fixed inset-x-0 bottom-0 z-50 rounded-t-[28px] border-t border-gray-200 bg-white shadow-[0_-18px_60px_-20px_rgba(0,0,0,0.35)]"
+    class="fixed inset-x-0 bottom-0 z-[1000] hidden translate-y-6 opacity-0 transition-all duration-200 ease-out"
     role="dialog"
     aria-modal="true"
     aria-label="Menú"
   >
-    <!-- top glow -->
-    <div class="pointer-events-none absolute inset-x-0 -top-10 h-16 bg-gradient-to-r from-sid-cyan/25 via-sid-purple/15 to-sid-pink/25 blur-2xl"></div>
+    <div class="mx-auto w-full max-w-md">
+      <div class="relative overflow-hidden rounded-t-[28px] border border-gray-200 bg-white shadow-[0_-18px_60px_-20px_rgba(0,0,0,0.35)]">
+        <!-- top glow -->
+        <div class="pointer-events-none absolute inset-x-0 -top-10 h-16 bg-gradient-to-r from-sid-cyan/25 via-sid-purple/15 to-sid-pink/25 blur-2xl"></div>
 
-    <div class="mx-auto max-w-md px-5 pb-6 pt-4">
-      <!-- grabber + header -->
-      <div class="flex items-center justify-between">
-        <div class="space-y-1">
-          <div class="h-1.5 w-10 rounded-full bg-gray-200"></div>
-          <div class="font-poppins text-base font-semibold text-sid-navy">Menú</div>
+        <div class="px-5 pb-6 pt-4">
+          <!-- grabber + header -->
+          <div class="flex items-center justify-between">
+            <div class="space-y-2">
+              <div class="mx-auto h-1.5 w-10 rounded-full bg-gray-200"></div>
+              <div class="font-poppins text-base font-semibold text-sid-navy">Menú</div>
+            </div>
+
+            <button
+              id="nav-close"
+              class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.98]"
+              type="button"
+              aria-label="Cerrar menú"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- links -->
+          <div class="mt-5 grid gap-2">
+            {links.map((l) => (
+              <a
+                href={l.href}
+                class="group flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.99]"
+              >
+                <span>{l.label}</span>
+                <span class="text-slate-400 transition group-hover:translate-x-0.5">→</span>
+              </a>
+            ))}
+
+            <div class="my-2 h-px bg-gray-200"></div>
+
+            <a
+              href={site.joinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative inline-flex items-center justify-center rounded-2xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 active:scale-[0.99]"
+            >
+              <span class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></span>
+              Únete
+            </a>
+
+            <p class="mt-3 text-center text-xs text-slate-500">
+              Pulsa afuera o <span class="font-semibold">Esc</span> para cerrar.
+            </p>
+          </div>
         </div>
-
-        <button
-          id="nav-close"
-          class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.98]"
-          type="button"
-          aria-label="Cerrar menú"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-6 w-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-
-      <!-- links -->
-      <div class="mt-5 grid gap-2">
-        {links.map((l) => (
-          <a
-            href={l.href}
-            class="group flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.99]"
-          >
-            <span>{l.label}</span>
-            <span class="text-slate-400 transition group-hover:translate-x-0.5">→</span>
-          </a>
-        ))}
-
-        <div class="my-2 h-px bg-gray-200"></div>
-
-        <!-- CTA -->
-        <a
-          href={site.joinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative inline-flex items-center justify-center rounded-2xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 active:scale-[0.99]"
-        >
-          <span class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></span>
-          Únete
-        </a>
-
-        <!-- small hint -->
-        <p class="mt-3 text-center text-xs text-slate-500">
-          Pulsa afuera o <span class="font-semibold">Esc</span> para cerrar.
-        </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Simple JS: toggle -->
 <script is:inline>
   const toggleBtn = document.getElementById("nav-toggle");
-  const menu = document.getElementById("mobile-menu");
+  const menuRoot = document.getElementById("mobile-menu");
   const overlay = document.getElementById("nav-overlay");
+  const sheet = document.getElementById("nav-sheet");
   const closeBtn = document.getElementById("nav-close");
   const iconOpen = document.getElementById("icon-open");
   const iconClose = document.getElementById("icon-close");
 
-  function openMenu() {
-    menu.classList.remove("hidden");
-    toggleBtn.setAttribute("aria-expanded", "true");
-    iconOpen.classList.add("hidden");
-    iconClose.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-  }
+  function setOpen(open) {
+    if (!menuRoot || !overlay || !sheet || !toggleBtn) return;
 
-  function closeMenu() {
-    menu.classList.add("hidden");
-    toggleBtn.setAttribute("aria-expanded", "false");
-    iconOpen.classList.remove("hidden");
-    iconClose.classList.add("hidden");
-    document.body.style.overflow = "";
+    menuRoot.dataset.open = open ? "true" : "false";
+    toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
+
+    // icons
+    if (iconOpen && iconClose) {
+      iconOpen.classList.toggle("hidden", open);
+      iconClose.classList.toggle("hidden", !open);
+    }
+
+    // visibility
+    overlay.classList.toggle("hidden", !open);
+    sheet.classList.toggle("hidden", !open);
+
+    // animate
+    if (open) {
+      requestAnimationFrame(() => {
+        sheet.classList.remove("translate-y-6", "opacity-0");
+        sheet.classList.add("translate-y-0", "opacity-100");
+      });
+      document.body.style.overflow = "hidden";
+    } else {
+      sheet.classList.add("translate-y-6", "opacity-0");
+      sheet.classList.remove("translate-y-0", "opacity-100");
+      document.body.style.overflow = "";
+      // wait for transition then hide
+      setTimeout(() => {
+        if (menuRoot.dataset.open === "false") {
+          overlay.classList.add("hidden");
+          sheet.classList.add("hidden");
+        }
+      }, 200);
+    }
   }
 
   toggleBtn?.addEventListener("click", () => {
     const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
-    isOpen ? closeMenu() : openMenu();
+    setOpen(!isOpen);
   });
 
-  closeBtn?.addEventListener("click", closeMenu);
-  overlay?.addEventListener("click", closeMenu);
+  closeBtn?.addEventListener("click", () => setOpen(false));
+  overlay?.addEventListener("click", () => setOpen(false));
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
+    if (e.key === "Escape") setOpen(false);
   });
 
-  menu?.addEventListener("click", (e) => {
+  // close on navigation
+  sheet?.addEventListener("click", (e) => {
     const a = e.target.closest("a");
-    if (a) closeMenu();
+    if (a) setOpen(false);
   });
 </script>
-</header>

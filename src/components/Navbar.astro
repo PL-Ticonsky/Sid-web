@@ -75,23 +75,36 @@ const links = [
     </button>
   </nav>
 
-  <!-- Mobile menu (overlay + panel) -->
-  <div id="mobile-menu" class="hidden md:hidden">
-    <!-- overlay -->
-    <div id="nav-overlay" class="fixed inset-0 z-40 bg-black/40"></div>
+ <!-- Mobile menu (overlay + premium sheet) -->
+<div id="mobile-menu" class="hidden md:hidden">
+  <!-- overlay -->
+  <div
+    id="nav-overlay"
+    class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+  ></div>
 
-    <!-- panel -->
-    <div
-      class="fixed right-0 top-0 z-50 h-full w-[88%] max-w-sm border-l border-white/10 bg-sid-navy/95 p-5 backdrop-blur"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Menú"
-    >
+  <!-- sheet -->
+  <div
+    id="nav-sheet"
+    class="fixed inset-x-0 bottom-0 z-50 rounded-t-[28px] border-t border-gray-200 bg-white shadow-[0_-18px_60px_-20px_rgba(0,0,0,0.35)]"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú"
+  >
+    <!-- top glow -->
+    <div class="pointer-events-none absolute inset-x-0 -top-10 h-16 bg-gradient-to-r from-sid-cyan/25 via-sid-purple/15 to-sid-pink/25 blur-2xl"></div>
+
+    <div class="mx-auto max-w-md px-5 pb-6 pt-4">
+      <!-- grabber + header -->
       <div class="flex items-center justify-between">
-        <div class="font-poppins text-base font-semibold text-white">Menú</div>
+        <div class="space-y-1">
+          <div class="h-1.5 w-10 rounded-full bg-gray-200"></div>
+          <div class="font-poppins text-base font-semibold text-sid-navy">Menú</div>
+        </div>
+
         <button
           id="nav-close"
-          class="rounded-xl border border-white/15 bg-white/5 p-2 text-white"
+          class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2 text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.98]"
           type="button"
           aria-label="Cerrar menú"
         >
@@ -101,71 +114,80 @@ const links = [
         </button>
       </div>
 
-      <div class="mt-6 grid gap-2">
+      <!-- links -->
+      <div class="mt-5 grid gap-2">
         {links.map((l) => (
           <a
             href={l.href}
-            class="rounded-xl px-3 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10"
+            class="group flex items-center justify-between rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-sid-navy shadow-sm transition hover:bg-gray-50 active:scale-[0.99]"
           >
-            {l.label}
+            <span>{l.label}</span>
+            <span class="text-slate-400 transition group-hover:translate-x-0.5">→</span>
           </a>
         ))}
 
-        <div class="mt-3 h-px bg-white/10"></div>
+        <div class="my-2 h-px bg-gray-200"></div>
 
+        <!-- CTA -->
         <a
           href={site.joinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="mt-3 inline-flex items-center justify-center rounded-xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+          class="relative inline-flex items-center justify-center rounded-2xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 active:scale-[0.99]"
         >
+          <span class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></span>
           Únete
         </a>
+
+        <!-- small hint -->
+        <p class="mt-3 text-center text-xs text-slate-500">
+          Pulsa afuera o <span class="font-semibold">Esc</span> para cerrar.
+        </p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Simple JS: toggle -->
-  <script is:inline>
-    const toggleBtn = document.getElementById("nav-toggle");
-    const menu = document.getElementById("mobile-menu");
-    const overlay = document.getElementById("nav-overlay");
-    const closeBtn = document.getElementById("nav-close");
-    const iconOpen = document.getElementById("icon-open");
-    const iconClose = document.getElementById("icon-close");
+<!-- Simple JS: toggle -->
+<script is:inline>
+  const toggleBtn = document.getElementById("nav-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const overlay = document.getElementById("nav-overlay");
+  const closeBtn = document.getElementById("nav-close");
+  const iconOpen = document.getElementById("icon-open");
+  const iconClose = document.getElementById("icon-close");
 
-    function openMenu() {
-      menu.classList.remove("hidden");
-      toggleBtn.setAttribute("aria-expanded", "true");
-      iconOpen.classList.add("hidden");
-      iconClose.classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-    }
+  function openMenu() {
+    menu.classList.remove("hidden");
+    toggleBtn.setAttribute("aria-expanded", "true");
+    iconOpen.classList.add("hidden");
+    iconClose.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
 
-    function closeMenu() {
-      menu.classList.add("hidden");
-      toggleBtn.setAttribute("aria-expanded", "false");
-      iconOpen.classList.remove("hidden");
-      iconClose.classList.add("hidden");
-      document.body.style.overflow = "";
-    }
+  function closeMenu() {
+    menu.classList.add("hidden");
+    toggleBtn.setAttribute("aria-expanded", "false");
+    iconOpen.classList.remove("hidden");
+    iconClose.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
 
-    toggleBtn?.addEventListener("click", () => {
-      const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
-      isOpen ? closeMenu() : openMenu();
-    });
+  toggleBtn?.addEventListener("click", () => {
+    const isOpen = toggleBtn.getAttribute("aria-expanded") === "true";
+    isOpen ? closeMenu() : openMenu();
+  });
 
-    closeBtn?.addEventListener("click", closeMenu);
-    overlay?.addEventListener("click", closeMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 
-    // cerrar al navegar (si el usuario toca un link)
-    menu?.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (a) closeMenu();
-    });
-  </script>
+  menu?.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) closeMenu();
+  });
+</script>
 </header>

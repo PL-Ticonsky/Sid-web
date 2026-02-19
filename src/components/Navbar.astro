@@ -22,14 +22,13 @@ const links = [
           {l.label}
         </a>
       ))}
-      <a
-        href={site.joinUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-xl bg-sid-pink px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
-      >
-        Únete
-      </a>
+<a
+  href={`${BASE}join/`}
+  class="inline-flex items-center justify-center rounded-xl bg-sid-pink px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+>
+  Únete
+</a>
+
     </div>
 
     <!-- Mobile toggle -->
@@ -100,15 +99,14 @@ const links = [
 
             <div class="my-2 h-px bg-gray-200"></div>
 
-            <a
-              href={site.joinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="relative inline-flex items-center justify-center rounded-2xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 active:scale-[0.99]"
-            >
-              <span class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></span>
-              Únete
-            </a>
+<a
+  href={`${BASE}join/`}
+  class="relative inline-flex items-center justify-center rounded-2xl bg-sid-pink px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 active:scale-[0.99]"
+>
+  <span class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-white/10 via-transparent to-white/10"></span>
+  Únete
+</a>
+
 
             <p class="mt-3 text-center text-xs text-slate-500">
               Pulsa afuera o <span class="font-semibold">Esc</span> para cerrar.
